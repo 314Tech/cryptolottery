@@ -20,13 +20,14 @@ class App extends Component {
   }
 
   async refreshParams() {
-    const manager = await lottery.methods.manager().call();
     const players = await lottery.methods.getParticipants().call();
     const balance = await web3.eth.getBalance(lottery.options.address);
 
-    this.setState({ manager, players, balance });
+    this.setState({ players, balance });
   }
   async componentDidMount() {
+    const manager = await lottery.methods.manager().call();
+    this.setState({ manager }); 
     this.refreshParams();
   }
 
@@ -79,14 +80,9 @@ class App extends Component {
 
         <form onSubmit={this.onSubmit}>
           <h4>Want to try your luck?</h4>
-          <div>
-            <label>Amount of ether to enter</label>
-            <input
-              value={this.state.value}
-              onChange={event => this.setState({ value: event.target.value })}
-            />
-          </div>
-          <button>Enter</button>
+          <button
+            onClick = {event => this.setState({ value: "0.01"})}
+          >Enter with 0.01 Ethers</button>
         </form>
 
         <hr />

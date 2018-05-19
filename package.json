@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "openzeppelin-solidity": "1.9.0",
     "react": "^16.2.0",
+    "react-countdown-now": "^1.3.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
     "save": "^2.3.2",
     "truffle-contract": "^3.0.5",
+    "walletconnect": "0.0.1-beta.12",
     "web3": "^1.0.0-beta.26"
   },
   "scripts": {
@@ -15,5 +18,22 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "description": "This is a the mid-term assignment for the Siraj DApp class. Lottery is a simple lottery game contract that receives Ethers from participants and draws randomly one every hour. The winner wins the whole balance.",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/314Tech/react-ethereum-lottery.git"
+  },
+  "keywords": [],
+  "author": "“Nabyl <“nabyl@liveultrahealthy.com”> (http://www.liveultrahealthy.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/314Tech/react-ethereum-lottery/issues"
+  },
+  "homepage": "https://github.com/314Tech/react-ethereum-lottery#readme"
 }

@@ -1,0 +1,17 @@
+strict digraph {
+  Lottery
+  enterLottery
+  require
+  push
+  random
+  pickWinner
+  transfer
+  getParticipants
+  kill
+  selfdestruct
+  enterLottery -> require
+  enterLottery -> push
+  pickWinner -> transfer
+  kill -> selfdestruct
+}
+

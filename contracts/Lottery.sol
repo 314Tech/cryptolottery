@@ -1,15 +1,17 @@
-pragma solidity ^0.4.19;
+pragma solidity ^0.4.4;
+import 'openzeppelin-solidity/contracts/lifecycle/Destructible.sol';
 
-contract Lottery {
+contract Lottery is Destructible {
     address public manager;
     address[] public participants;
     
-    function Lottery() public {
+    constructor() public {
         manager = msg.sender;
     }
     
     function enterLottery() public payable {
-        require(msg.value > .001 ether);
+        uint exactAmount = .001 ether;
+        require(msg.value == exactAmount);
         participants.push(msg.sender);
     }
     
@@ -17,24 +19,25 @@ contract Lottery {
         return uint(keccak256(block.difficulty, now, participants));
     }
     
-    function pickWinner() public restricted {
+    function getBalance() public view returns(uint) {
+        return address(this).balance;
+    }
+    
+    function getNumberOfParticipants() public view returns(uint) {
+        return participants.length;
+    }
+    
+    function pickWinner() public onlyOwner returns(address) {
         uint index = random() % participants.length;
-        uint balance = this.balance;
+        uint balance = address(this).balance;
         address winner = participants[index];
         participants = new address[](0);
         winner.transfer(balance);
+        return winner;
     }
     
-    function getParticipants() public view restricted returns(address[]) {
+    function getParticipants() public view onlyOwner returns(address[]) {
         return participants;  
     }
-    
-    function kill() public restricted{
-        selfdestruct(manager);
-    }
 
-    modifier restricted() {
-        require(msg.sender == manager);
-        _;
-    } 
 }

@@ -18,7 +18,7 @@ The contract can be deployed to a local network or the rinkeby test network
 ./scripts/deploy.sh
 ```
 
-### Deploy with ganache
+### Deploy on the Rinkeby test network
 
  1. Run a rinkeby node
 ```

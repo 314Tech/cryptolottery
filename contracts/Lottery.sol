@@ -1,9 +1,11 @@
 pragma solidity ^0.4.4;
-import 'openzeppelin-solidity/contracts/lifecycle/Destructible.sol';
+import '../node_modules/openzeppelin-solidity/contracts/lifecycle/Destructible.sol';
 
 contract Lottery is Destructible {
     address public manager;
     address[] public participants;
+    
+    event drawEvent(uint balance);
     
     constructor() public {
         manager = msg.sender;
@@ -33,6 +35,7 @@ contract Lottery is Destructible {
         address winner = participants[index];
         participants = new address[](0);
         winner.transfer(balance);
+        emit drawEvent(balance);
         return winner;
     }
     
